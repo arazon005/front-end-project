@@ -1,0 +1,29 @@
+@media screen and (width >=786px) {
+  .grid {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex: wrap;
+  }
+
+  .grid-container {
+    width: 400px;
+    border: 3px solid black;
+    margin: 5px 10px;
+  }
+
+  .container-image {
+    height: 275px;
+    width: 100%;
+  }
+
+  .container-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .char-info {
+    float: right;
+  }
+}
