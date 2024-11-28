@@ -1,12 +1,11 @@
+'use strict';
 const $main = document.querySelector('div');
 if (!$main) throw new Error('$main query failed');
-
 setTimeout(() => {
   console.log(index.length);
   console.log(fetch('https://api.rhodesapi.com/api/search?rarity=0'));
   for (let i = 0; i < index.length; i++) {
     console.log(i);
-
     const $gridContainer = document.createElement('div');
     $gridContainer.className = 'grid-container unowned';
     const $containerImage = document.createElement('div');

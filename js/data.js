@@ -1,8 +1,8 @@
+'use strict';
 /* exported data */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-let index: any[] = [];
-
-async function getOperatorData(): Promise<void> {
+let index = [];
+async function getOperatorData() {
   try {
     const response = await fetch('https://api.rhodesapi.com/api/operator');
     const r2 = await fetch('https://api.rhodesapi.com/api/search?rarity=1');
@@ -21,5 +21,4 @@ async function getOperatorData(): Promise<void> {
     console.error('Error:', error);
   }
 }
-
 getOperatorData();
