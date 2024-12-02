@@ -1,0 +1,65 @@
+body {
+  background-color: rgb(65, 69, 95);
+}
+
+a {
+  cursor: pointer;
+}
+
+.container-image {
+  background-color: rgb(101, 104, 129);
+}
+
+.grid-container:hover .container-image {
+  filter: blur(2px);
+}
+
+.unowned {
+  filter: brightness(70%);
+}
+
+.name {
+  display: none;
+  position: absolute;
+  bottom: 25px;
+  left: 30px;
+  filter: revert;
+}
+
+.hover-buttons {
+  position: absolute;
+  bottom: 120px;
+}
+
+.grid-container:hover .name {
+  display: inline;
+}
+
+.grid {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.char-info {
+  position: relative;
+}
+
+.char-info * {
+  margin: 5px;
+}
+
+.char-info img {
+  height: 100%;
+}
+
+.favorite {
+  border: 3px solid gold;
+}
