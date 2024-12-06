@@ -6,8 +6,51 @@ a {
   cursor: pointer;
 }
 
-.container-image {
+dialog {
+  background-color: rgb(14, 51, 133);
+  color: white;
+  border-color: black;
+}
+
+.modal-container {
+  height: 100%;
+}
+
+.whole-row {
+  display: flex;
+}
+
+.description-container {
+  background-color: bisque;
+}
+
+.description {
+  color: black;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modal-name {
+  text-align: left;
+}
+
+.container-image,
+.modal-image-container {
   background-color: rgb(101, 104, 129);
+}
+
+.modal-image-container {
+  margin-bottom: 10px;
+}
+
+.modal-image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .grid-container:hover .container-image {
