@@ -165,7 +165,6 @@ setTimeout(() => {
           .initial_sp;
       const $initialSp = document.createElement('p');
       $initialSp.textContent = initialSp;
-      $description.appendChild($initialSp);
       $mobileDescription.appendChild($initialSp);
       const spCost =
         'SP Cost: ' +
@@ -173,7 +172,6 @@ setTimeout(() => {
           .sp_cost;
       const $spCost = document.createElement('p');
       $spCost.textContent = spCost;
-      $description.appendChild($spCost);
       $mobileDescription.appendChild($spCost);
       const duration =
         'Duration: ' +
@@ -181,14 +179,12 @@ setTimeout(() => {
           .duration;
       const $duration = document.createElement('p');
       $duration.textContent = duration;
-      $description.appendChild($duration);
       $mobileDescription.appendChild($duration);
       const $skillDescription = document.createElement('p');
       $skillDescription.textContent =
         operators[current].skills[skillPointer].variations[
           skillLevel - 1
         ].description;
-      $description.appendChild($skillDescription);
       $mobileDescription.appendChild($skillDescription);
     } else {
       $description.textContent = '';
@@ -213,7 +209,6 @@ setTimeout(() => {
       const $spCost = document.createElement('p');
       $spCost.textContent = spCost;
       $description.appendChild($spCost);
-      $mobileDescription.appendChild($spCost);
       const duration =
         'Duration: ' +
         operators[current].skills[skillPointer].variations[skillLevel - 1]
