@@ -1,7 +1,7 @@
 'use strict';
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const $main = document.querySelector('div');
-if (!$main) throw new Error('$main query failed');
+const $grid = document.querySelector('.grid');
+if (!$grid) throw new Error('$grid query failed');
 const $modal = document.querySelector('dialog');
 if (!$modal) throw new Error('$modal query failed');
 const $exitModal = document.querySelector('.exit-modal');
@@ -18,7 +18,10 @@ const $skills = document.querySelectorAll('.skill-level');
 const $s1Name = document.querySelector('.s1-name');
 const $s2Name = document.querySelector('.s2-name');
 const $s3Name = document.querySelector('.s3-name');
+const $promotionButtons = document.querySelectorAll('.promotion-selector');
 const $description = document.querySelector('.description');
+const $mobileDescription = document.querySelector('.mobile');
+const $artSelector = document.querySelector('.art-selector');
 if (!$hp) throw new Error('$hp query failed');
 if (!$atk) throw new Error('$atk query failed');
 if (!$def) throw new Error('$def query failed');
@@ -28,14 +31,18 @@ if (!$skills) throw new Error('$skills query failed');
 if (!$s1Name) throw new Error('$s1Name query failed');
 if (!$s2Name) throw new Error('$s2Name query failed');
 if (!$s3Name) throw new Error('$s3Name query failed');
+if (!$promotionButtons) throw new Error('$promotionButtons query failed');
 if (!$description) throw new Error('$description query failed');
+if (!$artSelector) throw new Error('$artSelector query failed');
+if (!$mobileDescription) throw new Error('$mobileDescription query failed');
+const $searchBar = document.querySelector('#search');
+const $filters = document.querySelector('#filters');
+if (!$searchBar) throw new Error('$searchBar query failed');
+if (!$filters) throw new Error('$filters query failed');
 let $favElements;
 let $ownElements;
 let $editElements;
 setTimeout(() => {
-  console.log(operators);
-  console.log(operators[9]);
-  operators[0].level = 50;
   createGrid();
   $favElements = document.querySelectorAll('.favorite');
   $ownElements = document.querySelectorAll('.own');
@@ -45,15 +52,12 @@ setTimeout(() => {
   for (let i = 0; i < $gridElements.length; i++) {
     $gridElements[i].addEventListener('click', (event) => {
       const $eventTarget = event.target;
-      console.log($gridElements[i].id);
-      console.log($eventTarget.textContent);
-      console.log($gridElements[i].className.length);
       if ($eventTarget.textContent === 'own') {
         if (operators[i].own === false) {
-          $gridElements[i].className = 'grid-container';
+          $gridElements[i].classList.remove('unowned');
           operators[i].own = true;
         } else {
-          $gridElements[i].className = 'grid-container unowned';
+          $gridElements[i].classList.add('unowned');
           operators[i].own = false;
         }
         writeOperators();
@@ -73,6 +77,13 @@ setTimeout(() => {
       }
       if ($eventTarget.classList.contains('edit')) {
         current = i;
+        $artSelector.textContent = '';
+        for (let a = 0; a < operators[i].art.length; a++) {
+          const $artButton = document.createElement('button');
+          $artButton.setAttribute('type', 'button');
+          $artButton.className = 'art-button ' + String(a);
+          $artSelector.appendChild($artButton);
+        }
         editModal(i);
         $modal.showModal();
       }
@@ -81,6 +92,7 @@ setTimeout(() => {
   $modal.addEventListener('click', (event) => {
     const $eventTarget = event.target;
     if ($eventTarget.className === 'exit-modal') {
+      $mobileDescription.textContent = '';
       $modal.close();
       updateGrid(current);
     }
@@ -104,7 +116,7 @@ setTimeout(() => {
     }
     if ($eventTarget.className === 's-up') {
       const skill = Number(
-        $eventTarget.parentElement?.parentElement?.className,
+        $eventTarget.parentElement?.parentElement?.classList[1],
       );
       if (operators[current].skills[skill].level < 7) {
         for (let i = 0; i < operators[current].skills.length; i++) {
@@ -116,7 +128,7 @@ setTimeout(() => {
     }
     if ($eventTarget.className === 's-down') {
       const skill = Number(
-        $eventTarget.parentElement?.parentElement?.className,
+        $eventTarget.parentElement?.parentElement?.classList[1],
       );
       if (
         operators[current].skills[skill].level > 1 &&
@@ -130,24 +142,129 @@ setTimeout(() => {
         operators[current].skills[skill].level--;
       }
     }
+    if ($eventTarget.classList.contains('promotion-selector')) {
+      operators[current].promotion = Number($eventTarget.classList[1]);
+      operators[current].artPointer = Number($eventTarget.classList[1]);
+      operators[current].level = 1;
+    }
+    if ($eventTarget.classList.contains('art-button')) {
+      operators[current].artPointer = Number($eventTarget.classList[1]);
+    }
     editModal(current);
     writeOperators();
   });
   $modal.addEventListener('mouseover', (event) => {
     const $eventTarget = event.target;
     if ($eventTarget.classList.contains('skill')) {
-      const skillPointer = Number($eventTarget.parentElement?.className);
+      const skillPointer = Number($eventTarget.parentElement?.classList[1]);
       const skillLevel = operators[current].skills[skillPointer].level;
-      $description.textContent =
+      $mobileDescription.textContent = '';
+      const initialSp =
+        'Initial SP: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .initial_sp;
+      const $initialSp = document.createElement('p');
+      $initialSp.textContent = initialSp;
+      $description.appendChild($initialSp);
+      $mobileDescription.appendChild($initialSp);
+      const spCost =
+        'SP Cost: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .sp_cost;
+      const $spCost = document.createElement('p');
+      $spCost.textContent = spCost;
+      $description.appendChild($spCost);
+      $mobileDescription.appendChild($spCost);
+      const duration =
+        'Duration: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .duration;
+      const $duration = document.createElement('p');
+      $duration.textContent = duration;
+      $description.appendChild($duration);
+      $mobileDescription.appendChild($duration);
+      const $skillDescription = document.createElement('p');
+      $skillDescription.textContent =
         operators[current].skills[skillPointer].variations[
           skillLevel - 1
         ].description;
+      $description.appendChild($skillDescription);
+      $mobileDescription.appendChild($skillDescription);
     } else {
       $description.textContent = '';
     }
   });
-  console.log(Object.values(operators[9].statistics)[0]);
-}, 2000);
+  $modal.addEventListener('mouseover', (event) => {
+    const $eventTarget = event.target;
+    if ($eventTarget.classList.contains('skill')) {
+      const skillPointer = Number($eventTarget.parentElement?.classList[1]);
+      const skillLevel = operators[current].skills[skillPointer].level;
+      const initialSp =
+        'Initial SP: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .initial_sp;
+      const $initialSp = document.createElement('p');
+      $initialSp.textContent = initialSp;
+      $description.appendChild($initialSp);
+      const spCost =
+        'SP Cost: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .sp_cost;
+      const $spCost = document.createElement('p');
+      $spCost.textContent = spCost;
+      $description.appendChild($spCost);
+      $mobileDescription.appendChild($spCost);
+      const duration =
+        'Duration: ' +
+        operators[current].skills[skillPointer].variations[skillLevel - 1]
+          .duration;
+      const $duration = document.createElement('p');
+      $duration.textContent = duration;
+      $description.appendChild($duration);
+      const $skillDescription = document.createElement('p');
+      $skillDescription.textContent =
+        operators[current].skills[skillPointer].variations[
+          skillLevel - 1
+        ].description;
+      $description.appendChild($skillDescription);
+    } else {
+      $description.textContent = '';
+    }
+  });
+  $searchBar.addEventListener('input', (event) => {
+    const $eventTarget = event.target;
+    for (let i = 0; i < operators.length; i++) {
+      if (
+        operators[i].name.slice(0, $eventTarget.value.length).toLowerCase() ===
+        $eventTarget.value.toLowerCase()
+      ) {
+        $gridElements[i].classList.remove('name-filter');
+      } else {
+        $gridElements[i].classList.add('name-filter');
+      }
+    }
+  });
+  $filters.addEventListener('click', (event) => {
+    const $eventTarget = event.target;
+    if ($eventTarget.className === 'filtered') {
+      $eventTarget.className = '';
+      $filters.classList.remove($eventTarget.id);
+    } else {
+      $eventTarget.className = 'filtered';
+      $filters.classList.add($eventTarget.id);
+    }
+    for (let i = 0; i < operators.length; i++) {
+      if (
+        $filters.classList.contains(operators[i].class[0].toLowerCase()) ||
+        $filters.classList.length === 0
+      ) {
+        $gridElements[i].classList.remove('class-filter');
+      } else {
+        $gridElements[i].classList.add('class-filter');
+      }
+    }
+  });
+}, 2500);
 function editModal(i) {
   $level.textContent = String(operators[i].level);
   $atk.textContent = 'Atk: ' + String(calculateAtk(i));
@@ -165,6 +282,18 @@ function editModal(i) {
   $s1Name.textContent = operators[i].skills[0].name;
   $s2Name.textContent = operators[i].skills[1].name;
   $s3Name.textContent = operators[i].skills[2].name;
+  for (let l = 0; l < $promotionButtons.length; l++) {
+    if (l === operators[i].promotion) {
+      $promotionButtons[l].classList.add('selected');
+    } else {
+      $promotionButtons[l].classList.remove('selected');
+    }
+  }
+  if (operators[current].artPointer > 1) {
+    $modalImage.parentElement?.classList.add('big');
+  } else {
+    $modalImage.parentElement?.classList.remove('big');
+  }
 }
 function createGrid() {
   for (let i = 0; i < operators.length; i++) {
@@ -172,15 +301,15 @@ function createGrid() {
       const $gridContainer = document.createElement('div');
       $gridContainer.className = 'grid-container';
       if (!operators[i].own) {
-        $gridContainer.className += ' unowned';
+        $gridContainer.classList.add('unowned');
       } else if (operators[i].own && operators[i].favorite) {
-        $gridContainer.className += ' favorite';
+        $gridContainer.classList.add('favorite');
       }
       $gridContainer.id = String(i);
       const $containerImage = document.createElement('div');
       $containerImage.className = 'container-image';
       const $imgElement = document.createElement('img');
-      $imgElement.src = operators[i].art[0].link;
+      $imgElement.src = operators[i].art[operators[i].artPointer].link;
       $containerImage.appendChild($imgElement);
       $gridContainer.appendChild($containerImage);
       const $charInfo = document.createElement('div');
@@ -217,10 +346,11 @@ function createGrid() {
       $promotion.src = `images/e${operators[i].promotion}.webp`;
       $charInfo.appendChild($promotion);
       const $level = document.createElement('span');
+      $level.className = 'grid-level';
       $level.textContent = `Level: ${operators[i].level}`;
       $charInfo.appendChild($level);
       $gridContainer.appendChild($charInfo);
-      $main?.appendChild($gridContainer);
+      $grid?.appendChild($gridContainer);
     }
   }
 }
@@ -275,6 +405,7 @@ function updateGrid(id) {
   $promotion.src = `images/e${operators[id].promotion}.webp`;
   $charInfo.appendChild($promotion);
   const $level = document.createElement('span');
+  $level.className = 'grid-level';
   $level.textContent = `Level: ${operators[id].level}`;
   $charInfo.appendChild($level);
   $updateTarget.appendChild($charInfo);

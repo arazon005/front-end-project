@@ -1,4 +1,103 @@
-@media screen and (width >=800px) {
+@media screen and (width <768px) {
+  main {
+    width: 100%;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .grid-container {
+    width: 42%;
+    border: 3px solid black;
+    margin: 5px 10px;
+    flex-basis: auto;
+  }
+
+  .char-info {
+    height: 35px;
+    justify-content: right;
+    padding-bottom: 1px;
+  }
+
+  .char-info img {
+    height: 75%;
+  }
+
+  .grid-level {
+    position: relative;
+    bottom: 15px;
+  }
+
+  .name {
+    display: inline;
+    position: absolute;
+    bottom: 35px;
+    left: 5px;
+    filter: revert;
+  }
+
+  .hover-buttons {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    left: -5px;
+  }
+
+  .grid-container:hover .hover-buttons {
+    display: inline;
+  }
+
+  .modal-image-container {
+    height: 210px;
+    width: 100%;
+  }
+
+  .description-container {
+    display: none;
+  }
+
+  .description-container-mobile {
+    width: 100%;
+    height: 180px;
+    background-color: bisque;
+    padding: 5px;
+    padding-top: 0;
+  }
+
+  .modal-column-left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .promotion-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-column-right {
+    width: 100%;
+  }
+
+  .promotion-buttons img {
+    width: calc(100% / 4);
+  }
+
+  .mobile p {
+    margin: 5px 0;
+    font-size: 75%;
+  }
+
+  #search {
+    margin: 10px;
+  }
+}
+
+@media screen and (width >=768px) {
   .grid-container {
     width: 250px;
     border: 3px solid black;
@@ -12,8 +111,6 @@
   }
 
   .char-info {
-    background-color: darkblue;
-    color: white;
     display: flex;
     align-items: center;
     height: 25px;
@@ -21,8 +118,25 @@
     justify-content: right;
   }
 
+  .name {
+    display: none;
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    filter: revert;
+  }
+
+  .hover-buttons {
+    position: absolute;
+    bottom: 120px;
+  }
+
+  .grid-container:hover .name {
+    display: inline;
+  }
+
   dialog {
-    width: 1000px;
+    width: 1100px;
     height: 800px;
   }
 
@@ -56,5 +170,28 @@
 
   .modal-column-right {
     width: 40%;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  #search {
+    position: relative;
+    top: 23px;
+  }
+
+  header {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .modal-row {
+    display: flex;
+  }
+
+  .char-info img {
+    height: 100%;
   }
 }
