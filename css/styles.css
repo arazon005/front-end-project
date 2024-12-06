@@ -16,10 +16,6 @@ dialog {
   height: 100%;
 }
 
-.whole-row {
-  display: flex;
-}
-
 .description-container {
   background-color: bisque;
 }
@@ -45,6 +41,7 @@ dialog {
 
 .modal-image-container {
   margin-bottom: 10px;
+  position: relative;
 }
 
 .modal-image-container img {
@@ -53,25 +50,18 @@ dialog {
   object-fit: contain;
 }
 
+.art-selector {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
 .grid-container:hover .container-image {
   filter: blur(2px);
 }
 
 .unowned {
   filter: brightness(70%);
-}
-
-.name {
-  display: none;
-  position: absolute;
-  bottom: 25px;
-  left: 30px;
-  filter: revert;
-}
-
-.hover-buttons {
-  position: absolute;
-  bottom: 120px;
 }
 
 .grid-container:hover .name {
@@ -93,16 +83,53 @@ dialog {
 
 .char-info {
   position: relative;
+  background-color: darkblue;
+  color: white;
 }
 
 .char-info * {
   margin: 5px;
 }
 
-.char-info img {
-  height: 100%;
-}
-
 .favorite {
   border: 3px solid gold;
+}
+
+.skill-container {
+  width: 30%;
+  text-align: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.selected {
+  background-color: red;
+}
+
+.big img {
+  object-fit: cover;
+}
+
+.art-button {
+  height: 15px;
+  width: 15px;
+}
+
+.name-filter,
+.class-filter {
+  display: none;
+}
+
+#filters,
+header {
+  background-color: darkblue;
+}
+
+#filters img {
+  width: 70px;
+  height: 70px;
+}
+
+.filtered {
+  background-color: rgb(40, 40, 236);
 }

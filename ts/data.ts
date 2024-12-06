@@ -36,7 +36,6 @@ async function getOperatorData(): Promise<void> {
       }
     }
     writeOperators();
-    console.log(operators[0]);
   } catch (error) {
     console.error('Error:', error);
   }

@@ -10,73 +10,35 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header></header>
-    <main>
-      <div class="grid">
-        <!-- <div class="grid-container">
-          <div class="container-image">
-            <img
-              src="https://arknights.wiki.gg/images/5/56/Skadi_the_Corrupting_Heart_Elite_2.png" />
-          </div>
-          <div class="char-info">
-            <span class="name">
-              <span class="hover-buttons">
-                <a class="fa-regular fa-star">favorite</a>
-                <a class="own">own</a>
-                <a class="fa-solid fa-pencil edit">edit </a></span
-              >Skadi, the Corrupting Heart
-            </span>
-            <img
-              class="container-pot"
-              src="https://arknights.wiki.gg/images/5/52/Potential_4.png" />
-            <img
-              class="promotion"
-              src="https://arknights.wiki.gg/images/2/27/Elite_2.png" />
-            <span>Level:50</span>
-          </div>
-        </div>
-        <div class="grid-container">
-          <div class="container-image">
-            <img
-              src="https://arknights.wiki.gg/images/1/18/Fiammetta_Elite_2.png" />
-          </div>
-          <div class="char-info">Level: 60</div>
-        </div>
-        <div class="grid-container">
-          <div class="container-image">
-            <img src="https://arknights.wiki.gg/images/5/54/Blemishine.png" />
-          </div>
-          <div class="char-info">Level: 40</div>
-        </div>
-        <div class="grid-container">
-          <div class="container-image">
-            <img
-              src="https://arknights.wiki.gg/images/3/34/M%C5%82ynar_Elite_2.png" />
-          </div>
-          <div class="char-info">Level: 40</div>
-        </div>
-        <div class="grid-container">
-          <div class="container-image">
-            <img
-              src="https://arknights.wiki.gg/images/e/e9/Nearl_the_Radiant_Knight_Elite_2.png" />
-          </div>
-          <div class="char-info">Level: 50</div>
-        </div>
-        <div class="grid-container unowned">
-          <div class="container-image">
-            <img
-              src="https://arknights.wiki.gg/images/e/ee/Ch%27en_Elite_2.png" />
-          </div>
-          <div class="char-info">Level: 1</div>
-        </div> -->
+    <header>
+      <div class="" id="filters">
+        <img class="" id="vanguard" src="images/vanguard.webp" />
+        <img class="" id="guard" src="images/guard.webp" />
+        <img class="" id="defender" src="images/defender.webp" />
+        <img class="" id="sniper" src="images/sniper.webp" />
+        <img class="" id="caster" src="images/caster.webp" />
+        <img class="" id="medic" src="images/medic.webp" />
+        <img class="" id="supporter" src="images/supporter.webp" />
+        <img class="" id="specialist" src="images/specialist.webp" />
       </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search"
+          name="search"
+          value=""
+          placeholder="Search..." />
+      </div>
+    </header>
+    <main>
+      <div class="grid"></div>
       <dialog>
         <div class="modal-container">
           <form class="modal-form">
             <div class="modal-header">
               <a class="exit-modal">X</a>
             </div>
-            <div class="whole-row">
+            <div class="modal-row">
               <div class="modal-column-left">
                 <div>
                   <span class="modal-name"></span>
@@ -87,24 +49,15 @@
                   <div class="art-selector"></div>
                 </div>
                 <div class="description-container">
-                  <span class="description"></span>
+                  <p class="description"></p>
                 </div>
               </div>
               <div class="modal-column-right">
                 <div class="row">
                   <div class="promotion-buttons">
-                    <img
-                      class="promotion-selector"
-                      id="e0"
-                      src="images/e0.webp" />
-                    <img
-                      class="promotion-selector"
-                      id="e1"
-                      src="images/e1.webp" />
-                    <img
-                      class="promotion-selector"
-                      id="e2"
-                      src="images/e2.webp" />
+                    <img class="promotion-selector 0" src="images/e0.webp" />
+                    <img class="promotion-selector 1" src="images/e1.webp" />
+                    <img class="promotion-selector 2" src="images/e2.webp" />
                   </div>
                 </div>
                 <div class="row">
@@ -124,7 +77,7 @@
                   </div>
                 </div>
                 <div class="row" id="skills">
-                  <div class="0">
+                  <div class="skill-container 0">
                     <p class="s1-name skill"></p>
                     <p>
                       <input type="button" class="s-down" value="-" /><img
@@ -135,7 +88,7 @@
                         value="+" />
                     </p>
                   </div>
-                  <div class="1">
+                  <div class="skill-container 1">
                     <p class="s2-name skill"></p>
                     <p>
                       <input type="button" class="s-down" value="-" /><img
@@ -146,7 +99,7 @@
                         value="+" />
                     </p>
                   </div>
-                  <div class="2">
+                  <div class="skill-container 2">
                     <p class="s3-name skill"></p>
                     <p>
                       <input type="button" class="s-down" value="-" /><img
@@ -157,6 +110,9 @@
                         value="+" />
                     </p>
                   </div>
+                </div>
+                <div class="description-container-mobile">
+                  <p class="description mobile"></p>
                 </div>
               </div>
             </div>

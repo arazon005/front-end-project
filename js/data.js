@@ -34,7 +34,6 @@ async function getOperatorData() {
       }
     }
     writeOperators();
-    console.log(operators[0]);
   } catch (error) {
     console.error('Error:', error);
   }
