@@ -278,7 +278,8 @@ function editModal(i: number): void {
   $def.textContent = 'Def: ' + String(calculateDef(i));
   $hp.textContent = 'HP: ' + String(calculateHp(i));
   $modalPot.src = `images/pot${operators[i].pot}.webp`;
-  $modalImage.src = operators[i].art[operators[i].artPointer].link;
+  // $modalImage.src = operators[i].art[operators[i].artPointer].link;
+  $modalImage.src = art[i].artLinks[operators[i].artPointer];
   $modalName.textContent = operators[i].name;
   for (let s = 0; s < $skills.length; s++) {
     $skills[s].setAttribute(
@@ -317,7 +318,8 @@ function createGrid(): void {
       const $containerImage = document.createElement('div');
       $containerImage.className = 'container-image';
       const $imgElement = document.createElement('img');
-      $imgElement.src = operators[i].art[operators[i].artPointer].link;
+      // $imgElement.src = operators[i].art[operators[i].artPointer].link;
+      $imgElement.src = art[i].artLinks[operators[i].artPointer];
       $containerImage.appendChild($imgElement);
       $gridContainer.appendChild($containerImage);
       const $charInfo = document.createElement('div');
@@ -378,7 +380,8 @@ function updateGrid(id: number): void {
   const $containerImage = document.createElement('div');
   $containerImage.className = 'container-image';
   const $imgElement = document.createElement('img');
-  $imgElement.src = operators[id].art[operators[id].artPointer].link;
+  // $imgElement.src = operators[id].art[operators[id].artPointer].link;
+  $imgElement.src = art[id].artLinks[operators[id].artPointer];
   $containerImage.appendChild($imgElement);
   $updateTarget.appendChild($containerImage);
   const $charInfo = document.createElement('div');
